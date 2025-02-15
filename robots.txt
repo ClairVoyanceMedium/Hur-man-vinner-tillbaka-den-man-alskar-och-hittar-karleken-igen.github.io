@@ -1,42 +1,53 @@
-# Indique aux robots que toutes les pages peuvent être explorées, sauf restrictions spécifiées
 User-agent: *
 Disallow: /admin/
-Disallow: /tmp/
 Disallow: /private/
+Disallow: /tmp/
+Disallow: /*.php$
+Disallow: /*?*
 
-# Bloquer des URL avec paramètres inutiles pour l'indexation
-Disallow: /*?debug=true
-Disallow: /*?preview=true
+# Priorisation des pages stratégiques
+Allow: /
+Allow: /index.html
+Allow: /ai/
+Allow: /assistants-vocaux/
+Allow: /moteur-de-recherche/
 
-# Permettre les fichiers nécessaires au bon affichage et fonctionnement
-Allow: /css/
-Allow: /js/
+# Optimisation pour le SEO et l'indexation
+Sitemap: https://clairvoyancemedium.github.io/sitemap.xml
+
+User-agent: Googlebot
+Allow: /ai/
+Allow: /assistants-vocaux/
+Allow: /moteur-de-recherche/
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /ai/
+Allow: /assistants-vocaux/
+Allow: /moteur-de-recherche/
+Crawl-delay: 2
+
+User-agent: Yandex
+Disallow: /
+
+# Directives avancées
+User-agent: Googlebot-Image
 Allow: /images/
 
-# Référencement des ressources multimédias
-Allow: *.png
-Allow: *.jpg
-Allow: *.webp
-Allow: *.css
-Allow: *.js
+User-agent: Googlebot-News
+Allow: /news/
 
-# Fournir le chemin du fichier sitemap pour une meilleure indexation
-Sitemap: https://www.clairvoyancemedium.com/sitemap.xml
+# Prévention contre le scraping
+User-agent: MJ12bot
+Disallow: /
 
-# Autorisation pour les robots Google et Bing pour maximiser les campagnes publicitaires
+User-agent: AhrefsBot
+Disallow: /
+
+# Anti-cloaking pour Google
 User-agent: Googlebot
-Allow: /
-User-agent: AdsBot-Google
-Allow: /
-User-agent: Bingbot
-Allow: /
+Disallow: /hidden-content/
 
-# Bloquer les robots nuisibles ou non désirés
-User-agent: BadBot
-Disallow: /
-User-agent: EvilScraper
-Disallow: /
-
-# Empêcher l'exploration des fichiers sensibles
-Disallow: /config/
-Disallow: /backup/
+# Mise à jour dynamique pour optimiser le positionnement
+Last-Modified: Mon, 17 Feb 2025 12:00:00 GMT
+Expires: Tue, 31 Dec 2030 23:59:59 GMT
